@@ -1,5 +1,7 @@
 Este projeto demostra o problema de balanceamento do k8s usando o minikube como pode ser demonstrado no artigo:
+https://learnk8s.io/kubernetes-long-lived-connections
 
+E resolve usando a opcao mais simples esse problema do balanceamento do k8s
 
 Desta forma, leia o arquivo README-MINIKUBE.md para criar o cluster para testes.
 
