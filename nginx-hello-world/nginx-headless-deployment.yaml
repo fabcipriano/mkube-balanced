@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx-hello-world:latest
+        image: nginx-hello-world:v1.0.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

@@ -19,10 +19,14 @@ eval $(minikube docker-env)
 cd nginx-hello-world/
 
 # Build Docker image
-docker build -t nginx-hello-world:latest .
+docker build -t nginx-hello-world:v1.0.0 .
 
-# Load Docker image into Minikube
-minikube image load nginx-hello-world:latest
+# Load Docker image into Minikube (if you executed step 1.1 you dont need this command)
+# minikube image load nginx-hello-world:v1.0.0
+
+# Verify if image is in minikube
+minikube image ls
+
 ```
 
 #### 3. Deploy do ngix no minikube:
