@@ -46,4 +46,20 @@ cd nginx-hello-world/
 kubectl logs -f nginx-deployment-5d8b6d4b6f-abcde
 ```
 
+#### 5. Build Docker Image SpringBoot to test ClusterIP service:
+
+```bash
+# Build the Docker image
+docker build -t simple-app:v0.0.2 .
+
+# Load the Docker image into Minikube
+minikube image load simple-app:v0.0.2
+
+# Apply the deployment and service:
+kubectl apply -f simple-app-deployment.yaml
+
+# Get the service URL
+# Get the URL for the Spring Boot service and access the /fetch-hello endpoint.
+minikube service simple-app-service --url
+```
 
