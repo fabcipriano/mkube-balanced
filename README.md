@@ -50,10 +50,10 @@ kubectl logs -f nginx-deployment-5d8b6d4b6f-abcde
 
 ```bash
 # Build the Docker image
-docker build -t simple-app:v0.0.2 .
+docker build -t simple-app:v0.0.6 .
 
 # Load the Docker image into Minikube
-minikube image load simple-app:v0.0.2
+minikube image load simple-app:v0.0.6
 
 # Apply the deployment and service:
 kubectl apply -f simple-app-deployment.yaml

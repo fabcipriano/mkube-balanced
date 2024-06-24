@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: simple-app
-        image: simple-app:v0.0.2
+        image: simple-app:v0.0.6
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
 ---

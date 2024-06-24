@@ -1,5 +1,6 @@
 package br.com.facio.mkube.simple.controller;
 
+import br.com.facio.mkube.simple.feign.EnvoyClient;
 import br.com.facio.mkube.simple.feign.NginxClient;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,11 +16,21 @@ public class HelloController {
     @Autowired
     private NginxClient nginxClient;
 
+    @Autowired
+    private EnvoyClient envoyClient;
+
     @GetMapping("/fetch-hello")
     public String fetchHello() {
         logger.info("Received request to /fetch-hello");
         String response = nginxClient.getHello();
         logger.info("Response from Nginx service: " + response);
+        return response;
+    }
+    @GetMapping("/fetch-hello-balanced")
+    public String fetchHelloBalanced() {
+        logger.info("Received request to /fetch-hello-balanced port 10000");
+        String response = envoyClient.getHello();
+        logger.info("Response from EnvoyProxy service: " + response);
         return response;
     }
 }
