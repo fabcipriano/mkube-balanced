@@ -1,3 +1,5 @@
-for i in {1..64}; do wget -O /dev/null http://192.168.49.2:31350/fetch-hello; done
+SIMPLE_APP_SERVICE_URL=$(minikube service simple-app-service --url)
+echo $SIMPLE_APP_SERVICE_URL
+for i in {1..32}; do wget -O /dev/null ${SIMPLE_APP_SERVICE_URL}/fetch-hello; done
 
-for i in {1..64}; do wget -O /dev/null http://192.168.49.2:31350/fetch-hello-balanced; done
+for i in {1..32}; do wget -O /dev/null ${SIMPLE_APP_SERVICE_URL}/fetch-hello-balanced; done

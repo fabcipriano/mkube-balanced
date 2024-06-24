@@ -57,7 +57,7 @@ kubectl logs -f nginx-deployment-5d8b6d4b6f-abcde
 docker build -t simple-app:v0.0.6 .
 
 # Load the Docker image into Minikube
-minikube image load simple-app:v0.0.6
+# minikube image load simple-app:v0.0.6
 
 # Apply the deployment and service:
 kubectl apply -f simple-app-deployment.yaml
@@ -67,3 +67,24 @@ kubectl apply -f simple-app-deployment.yaml
 minikube service simple-app-service --url
 ```
 
+### Step 2: Corrigir balanceamento usando envoy proxy e headerless service
+#### 1. Faca o servico "desbalenceado" ser um headerless Service:
+```bash
+# Apply the headerless deployment and service:
+kubectl apply -f nginx-headless-deployment.yaml
+```
+#### 2. Faco o deploy do envoy proxy para balancear o headerless service:
+```bash
+
+# Apply envoy proxy deployment:
+kubectl apply -f envoy-configmap.yaml
+kubectl apply -f envoy-deployment.yaml
+```
+
+#### 3. Faca o client chamar o Servico via envoy proxy, e veja o balanceamento mesmo com keep alive:
+```bash
+SIMPLE_APP_SERVICE_URL=$(minikube service simple-app-service --url)
+
+# Apply envoy proxy deployment:
+wget -O /dev/null ${SIMPLE_APP_SERVICE_URL}/fetch-hello-balanced
+```
